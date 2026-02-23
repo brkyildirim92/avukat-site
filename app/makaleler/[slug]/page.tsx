@@ -1,4 +1,6 @@
 ﻿import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
 
 const articles = [
   {
@@ -419,7 +421,9 @@ export async function generateStaticParams() {
 }
 
 /* ✅ SEO METADATA */
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata(
+  { params }: { params: { slug: string } }
+): Promise<Metadata> {
   const article = articles.find(a => a.slug === params.slug);
 
   if (!article) {
@@ -444,6 +448,7 @@ export async function generateMetadata({ params }: Props) {
     },
   };
 }
+
 
 /* ✅ SAYFA */
 export default async function MakaleDetayPage({ params }: Props) {
