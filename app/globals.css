@@ -1,0 +1,70 @@
+﻿@import "tailwindcss";
+
+/* 🔒 Global renk değişkenleri KALSIN */
+:root {
+  --background: #262b3e;   /* footer / koyu temalar */
+  --foreground: #e5e7eb;   /* text-gray-200 */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+/* ❗️BODY RENK DAYATMASI KALDIRILDI */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* küçük temizlik */
+.nav-link:hover {
+  -webkit-text-fill-color: #ffffff;
+}
+
+/* anchor scroll fix */
+section,
+h1,
+h2,
+h3 {
+  scroll-margin-top: 100px;
+}
+/* === ÇALIŞMA ALANLARI KARTLARI === */
+.calisma-card {
+  transition: all 0.3s ease;
+  background: #2f3552;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.calisma-card:hover {
+  background: linear-gradient(135deg, #c69b65, #a8844f);
+  box-shadow: 0 0 45px rgba(198, 155, 101, 0.45);
+  transform: translateY(-4px);
+}
+
+/* === SAYFA AÇILIŞ ANİMASYONU === */
+.page-fade-in {
+  animation: fadeUp 1.2s ease-out both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* === KART İKON ANİMASYONU === */
+.calisma-icon {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.calisma-card:hover .calisma-icon {
+  transform: scale(1.12) rotate(-3deg);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.45));
+}
