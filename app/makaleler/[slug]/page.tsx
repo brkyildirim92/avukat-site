@@ -422,9 +422,12 @@ export async function generateStaticParams() {
 
 /* ✅ SEO METADATA */
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
-  const article = articles.find(a => a.slug === params.slug);
+
+  const { slug } = await params;
+
+  const article = articles.find(a => a.slug === slug);
 
   if (!article) {
     return { title: "Makale Bulunamadı" };
@@ -448,6 +451,7 @@ export async function generateMetadata(
     },
   };
 }
+
 
 
 /* ✅ SAYFA */
