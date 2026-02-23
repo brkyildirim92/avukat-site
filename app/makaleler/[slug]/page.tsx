@@ -419,7 +419,7 @@ export async function generateStaticParams() {
 }
 
 /* ✅ SEO METADATA */
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: Props) {
   const article = articles.find(a => a.slug === params.slug);
 
   if (!article) {
