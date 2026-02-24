@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactElement } from "react";
 
 export default function ScrollNavbar({
   children,
@@ -37,11 +37,22 @@ export default function ScrollNavbar({
         }}
       />
 
-      {/* GER�EK ��ER�K */}
+      {/* GERÇEK İÇERİK */}
       <div className="relative z-10">
-        {children}
+        {typeof children === "object"
+          ? (children as ReactElement<any>) &&
+            (() => {
+              const child = children as ReactElement<any>;
+              return {
+                ...child,
+                props: {
+                  ...child.props,
+                  shrink: scrolled,
+                },
+              };
+            })()
+          : children}
       </div>
     </header>
   );
 }
-

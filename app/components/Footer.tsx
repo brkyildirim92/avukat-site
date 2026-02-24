@@ -11,7 +11,7 @@ export default function Footer() {
       {/* ================= ÜST FOOTER ================= */}
       <div className={`max-w-5xl mx-auto px-6 ${footerPaddingY}`}>
 
-        <div className="flex items-start">
+        <div className="flex flex-col md:flex-row items-start gap-10">
 
           {/* SOL – LOGO */}
           <div className="shrink-0">
@@ -30,7 +30,7 @@ export default function Footer() {
 
           {/* SAĞ – KOLONLAR */}
           <div className="max-w-[520px]">
-            <div className="flex gap-10">
+            <div className="flex flex-col md:flex-row gap-10">
 
 {/* SOSYAL MEDYA */}
 <div>

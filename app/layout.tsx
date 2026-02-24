@@ -9,8 +9,7 @@ import ScrollNavbar from "./components/ScrollNavbar";
 import Link from "next/link";
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import Footer from "./components/Footer";
-
-
+import Navbar from "./components/navbar";
 
 
 export const poppins = Poppins({
@@ -88,46 +87,9 @@ export default function RootLayout({
           }}
         />
 
-        {/* 🔒 SABİT NAVBAR (SCROLL İLE MATLAŞIR) */}
-        <ScrollNavbar>
-          <nav className="h-[110px] w-full px-4 md:px-16 lg:px-24 flex justify-between items-center">
-
-{/* Sol: LOGO */}
-<div className="flex items-center max-w-[240px]">
-  <Link href="/">
-    <Image
-      src="/logoson1.png"
-      alt="Avukat Gamze Yıldırım Logo"
-      width={220}
-      height={220}
-      priority
-      className="h-[86px] w-auto object-contain cursor-pointer"
-    />
-  </Link>
-</div>
-
-
-            {/* Sağ: Menü */}
-            <div className="flex items-center gap-8">
-              {[
-                { href: "/", label: "Ana Sayfa" },
-                { href: "/calisma-alanlarimiz", label: "Çalışma Alanlarımız" },
-                { href: "/hakkimizda", label: "Hakkımızda" },
-                { href: "/makaleler", label: "Makaleler" },
-                { href: "/iletisim", label: "İletişim" },
-              ].map((link) => (
-                <NavLink
-                  key={link.href}
-                  href={link.href}
-                  className={poppins.className}
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-            </div>
-
-          </nav>
-        </ScrollNavbar>
+<ScrollNavbar>
+  <Navbar />
+</ScrollNavbar>
 
         {/* 📄 SAYFA İÇERİĞİ */}
         <main>

@@ -68,3 +68,8 @@ h3 {
   transform: scale(1.12) rotate(-3deg);
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.45));
 }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}

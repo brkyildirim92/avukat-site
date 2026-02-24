@@ -101,7 +101,7 @@ export const metadata = {
 
 
 export default function Home() {
-  const heroHeight = "1020px";
+  const heroHeight = "100vh";
   const spaceAfterHero = "80px";
   const spaceAfterTitle = "80px";
 
@@ -109,7 +109,7 @@ export default function Home() {
     <>
       {/* HERO */}
       <section
-        className="relative w-full flex items-center overflow-hidden -mt-[110px]"
+       className="relative w-full min-h-screen flex items-center overflow-hidden -mt-[110px]"
         style={{ minHeight: heroHeight }}
       >
         <div
