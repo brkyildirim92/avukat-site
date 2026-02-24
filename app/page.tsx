@@ -101,7 +101,7 @@ export const metadata = {
 
 
 export default function Home() {
-  const heroHeight = "100vh";
+  const heroHeight = "120vh";
   const spaceAfterHero = "80px";
   const spaceAfterTitle = "80px";
 
