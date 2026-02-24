@@ -81,7 +81,7 @@ export default function Navbar({ shrink = false }: { shrink?: boolean }) {
       <div
         className={`
           absolute top-full left-0 w-full md:hidden
-          bg-gradient-to-b from-white/90 to-white/70
+          bg-[rgba(38,43,62,0.55)]
           border-t border-[#c69b65]/40
           shadow-[0_20px_40px_rgba(0,0,0,0.18)]
           transition-all duration-500 ease-out
@@ -89,14 +89,14 @@ export default function Navbar({ shrink = false }: { shrink?: boolean }) {
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"}
         `}
-        style={{
-          backdropFilter: open
-            ? "blur(24px) brightness(1.05)"
-            : "blur(8px)",
-          WebkitBackdropFilter: open
-            ? "blur(24px) brightness(1.05)"
-            : "blur(8px)",
-        }}
+style={{
+  backdropFilter: open
+    ? "blur(28px) brightness(1.15)"
+    : "blur(10px)",
+  WebkitBackdropFilter: open
+    ? "blur(28px) brightness(1.15)"
+    : "blur(10px)",
+}}
       >
         {/* ALTIN ÇİZGİ */}
         <div className="h-[3px] w-16 mx-auto mt-4 rounded-full bg-gradient-to-r from-[#8c6b2f] via-[#c69b65] to-[#8c6b2f]" />
@@ -110,22 +110,17 @@ export default function Navbar({ shrink = false }: { shrink?: boolean }) {
               onClick={() => setOpen(false)}
               style={{ transitionDelay: `${i * 70}ms` }}
 className="
-  w-[85%] max-w-sm
-  rounded-2xl
-  bg-white/10
-  backdrop-blur-2xl
-  border border-white/30
-  shadow-[0_8px_30px_rgba(0,0,0,0.18)]
-  px-6 py-4
-  text-center
-  text-[17px] font-medium tracking-wide
-  text-[#1f2433]
-  transition-all duration-300 ease-out
-  hover:bg-white/20
-  hover:border-[#c69b65]/50
-  hover:shadow-[0_15px_40px_rgba(198,155,101,0.25)]
-  hover:scale-[1.03]
-  active:scale-[0.97]
+  text-lg font-medium tracking-wide
+  text-white/90
+  transition-all duration-300
+  hover:text-[#c69b65]
+  hover:scale-105
+  relative
+  after:absolute after:left-0 after:-bottom-1
+  after:h-[2px] after:w-0
+  after:bg-[#c69b65]
+  after:transition-all after:duration-300
+  hover:after:w-full
 "
             >
               {link.label}
