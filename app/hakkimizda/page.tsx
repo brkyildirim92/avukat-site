@@ -4,12 +4,22 @@ export default function HakkimizdaPage() {
   return (
     <section className="page-fade-in">
 
-      {/* FLEX İLE ZORLA YAN YANA */}
-      <div className="flex gap-24 items-start max-w-3xl mx-auto">
+      <div className="
+        flex flex-col-reverse md:flex-row
+        gap-12 md:gap-24
+        items-center md:items-start
+        max-w-6xl mx-auto
+      ">
 
-        {/* 📝 SOL – METİN */}
+        {/* 📝 METİN */}
         <div
-          className="space-y-6 text-sm leading-relaxed max-w-[520px] ml-[120px]"
+          className="
+            space-y-6
+            text-sm md:text-base
+            leading-relaxed
+            text-center md:text-left
+            max-w-xl
+          "
           style={{ color: "#9b9b9b" }}
         >
           <p>
@@ -29,15 +39,19 @@ export default function HakkimizdaPage() {
           </p>
         </div>
 
-        {/* 📸 SAĞ – FOTO */}
-        <div className="w-1/2 flex justify-end">
+        {/* 📸 FOTO */}
+        <div className="w-full md:w-1/2 flex justify-center md:justify-end">
           <Image
             src="/hakkimizda2.jpg"
             alt="Avukat Gamze Yıldırım"
-            width={1240}
-            height={520}
-            className="rounded-2xl object-cover"
+            width={640}
+            height={480}
             priority
+            className="
+              w-full max-w-md md:max-w-none
+              rounded-2xl object-cover
+              shadow-lg
+            "
           />
         </div>
 
@@ -46,4 +60,3 @@ export default function HakkimizdaPage() {
     </section>
   );
 }
-

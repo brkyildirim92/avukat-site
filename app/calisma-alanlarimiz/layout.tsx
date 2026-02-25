@@ -17,7 +17,7 @@ export default function CalismaAlanlariLayout({
             {/* SOL ÇİZGİ – NET */}
             <div
               style={{
-                width: "340px",        // 🔧 BURADAN KISALT / UZAT
+                width: "390px",        // 🔧 BURADAN KISALT / UZAT
                 height: "3px",
                 backgroundColor: "#c69b65",
               }}

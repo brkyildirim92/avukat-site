@@ -10,13 +10,13 @@ export default function MakalelerLayout({
 
       {/* 🔹 SAYFA BAŞLIĞI */}
       <div className="pt-[140px] pb-16">
-        <div className="px-6 max-w-7xl mx-auto">
+        <div className="px-6">
 
           <div className="flex items-center gap-2">
             {/* SOL ÇİZGİ */}
             <div
               style={{
-                width: "340px",
+                width: "390px", // 🔧 BURADAN KISALT / UZAT
                 height: "3px",
                 backgroundColor: "#c69b65",
               }}
