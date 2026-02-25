@@ -63,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       {/* 🔑 SADECE BURASI DÜZENLENDİ */}
-      <body className="bg-white text-gray-800 relative pt-[10px]">
+      <body className="bg-white text-gray-800">
 
         {/* SEO Schema */}
         <script

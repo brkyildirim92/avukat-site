@@ -107,50 +107,53 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO */}
-      <section
-       className="relative w-full min-h-screen flex items-center overflow-hidden -mt-[110px]"
-        style={{ minHeight: heroHeight }}
-      >
-        <div
-          className="absolute inset-0 w-full h-full"
-          style={{
-            backgroundImage: "url('/hukuk7.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "blur(3px)",
-          }}
-        />
-        <div className="absolute inset-0 bg-black/40" />
+{/* HERO */}
+<section className="relative w-full h-screen flex items-center overflow-hidden">
 
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <h1
-            className={`text-4xl md:text-5xl font-semibold leading-tight ${playfair.className}`}
-            style={{
-              color: "#c69b65",
-              background: "linear-gradient(45deg, #8c6b2f, #b08d57, #6f5323)",
-              WebkitBackgroundClip: "text",
-            }}
-          >
-            Avukat Gamze Yıldırım
-          </h1>
+  {/* Arka Plan */}
+  <div
+    className="absolute inset-0"
+    style={{
+      backgroundImage: "url('/hukuk7.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  />
 
-          <p
-            className={`mt-12 text-lg ${playfair.className}`}
-            style={{
-              color: "#c69b65",
-              background: "linear-gradient(45deg, #8c6b2f, #b08d57, #6f5323)",
-              WebkitBackgroundClip: "text",
-              maxWidth: "720px",
-              lineHeight: "3.0",
-              margin: "10 auto",
-            }}
-          >
-            Bireysel olarak çalışan bir avukat olarak, İstanbul merkezli ve Online
-            hukuki danışmanlık hizmeti sunuyorum.
-          </p>
-        </div>
-      </section>
+  {/* Blur + Dark Overlay */}
+  <div className="absolute inset-0 backdrop-blur-[2px] bg-black/40" />    {/* Ana Foto Blur Ayarı */}
+
+  {/* İçerik */}
+  <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+    <h1
+      className={`text-4xl md:text-5xl font-semibold leading-tight ${playfair.className}`}
+      style={{
+        color: "#c69b65",
+        background: "linear-gradient(45deg, #8c6b2f, #b08d57, #6f5323)",
+        WebkitBackgroundClip: "text",
+      }}
+    >
+      Avukat Gamze Yıldırım
+    </h1>
+
+    <p
+      className={`mt-12 text-lg ${playfair.className}`}
+      style={{
+        color: "#c69b65",
+        background: "linear-gradient(45deg, #8c6b2f, #b08d57, #6f5323)",
+        WebkitBackgroundClip: "text",
+        
+        maxWidth: "720px",
+        lineHeight: "2.2",
+        margin: "0 auto",
+      }}
+    >
+      Bireysel olarak çalışan bir avukat olarak, İstanbul merkezli ve Online
+      hukuki danışmanlık hizmeti sunuyorum.
+    </p>
+  </div>
+
+</section>
 
       <div style={{ height: spaceAfterHero }} />
 

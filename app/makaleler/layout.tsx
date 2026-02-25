@@ -12,19 +12,30 @@ export default function MakalelerLayout({
       <div className="pt-[140px] pb-16">
         <div className="px-6">
 
-          <div className="flex items-center gap-2">
+          <div
+            className="
+              flex items-center gap-3
+              justify-center md:justify-start
+            "
+          >
             {/* SOL ÇİZGİ */}
             <div
-              style={{
-                width: "390px", // 🔧 BURADAN KISALT / UZAT
-                height: "3px",
-                backgroundColor: "#c69b65",
-              }}
+              className="
+                h-[3px]
+                w-16 sm:w-24 md:w-[260px] lg:w-[390px]
+                bg-[#c69b65]
+                rounded-full
+              "
             />
 
             {/* BAŞLIK */}
             <h1
-              className={`${poppins.className} text-[20px] font-medium whitespace-nowrap`}
+              className={`
+                ${poppins.className}
+                text-[18px] md:text-[20px]
+                font-medium
+                whitespace-nowrap
+              `}
               style={{ color: "#c69b65" }}
             >
               Makaleler
