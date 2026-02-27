@@ -159,7 +159,7 @@ export default function Home() {
 
       {/* HİZMETLER */}
       <section className="bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-4">
           <h2
             className={`text-3xl md:text-4xl font-semibold text-center text-gray-900 ${playfair.className}`}
             style={{
@@ -215,6 +215,139 @@ export default function Home() {
           }
         `}</style>
       </section>
+      {/* 🛡️ TRUST SECTION – MINIMAL ELITE */}
+<section className="bg-white py-20">
+  <div className="max-w-6xl mx-auto px-6">
+
+    <div className="border-y border-[#e8d8c3] py-16">
+
+      <h3
+        className={`${playfair.className} text-2xl md:text-3xl font-medium text-center mb-14`}
+        style={{ color: "#1f2937" }}
+      >
+        Güven ve Şeffaflık İlkesi
+      </h3>
+
+      <div className="grid md:grid-cols-3 gap-12 text-center">
+
+        <div>
+          <div className="w-10 h-[2px] bg-[#c69b65] mx-auto mb-6" />
+          <h4 className="text-lg font-medium mb-4 text-[#1f2937]">
+            Birebir Süreç Yönetimi
+          </h4>
+          <p className="text-sm leading-7 text-gray-600">
+            Tüm hukuki süreçler doğrudan tarafımdan yürütülür. 
+            Müvekkil ile düzenli ve şeffaf iletişim esastır.
+          </p>
+        </div>
+
+        <div>
+          <div className="w-10 h-[2px] bg-[#c69b65] mx-auto mb-6" />
+          <h4 className="text-lg font-medium mb-4 text-[#1f2937]">
+            Mesleki Gizlilik
+          </h4>
+          <p className="text-sm leading-7 text-gray-600">
+            Tüm görüşmeler ve belgeler, avukatlık meslek ilkeleri 
+            çerçevesinde titizlikle korunur.
+          </p>
+        </div>
+
+        <div>
+          <div className="w-10 h-[2px] bg-[#c69b65] mx-auto mb-6" />
+          <h4 className="text-lg font-medium mb-4 text-[#1f2937]">
+            İstanbul Merkezli Hizmet
+          </h4>
+          <p className="text-sm leading-7 text-gray-600">
+            İstanbul merkezli aktif dava takibi ve Türkiye genelinde 
+            online hukuki danışmanlık sağlanmaktadır.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+      {/* 🚀 İLETİŞİME YÖNLENDİRME BLOĞU */}
+<section className="bg-white py-16">
+  <div className="max-w-4xl mx-auto px-6">
+
+    <div className="cta-box text-center">
+      <h3 className={`text-2xl md:text-3xl font-semibold mb-6 ${playfair.className}`}>
+        Hukuki Sürecinizi Profesyonel Şekilde Yönetelim
+      </h3>
+
+      <p className="text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
+        Hukuki bir sorunla karşı karşıyaysanız, süreci doğru ve stratejik şekilde
+        yönetmek büyük önem taşır. İlk değerlendirme için benimle iletişime geçebilirsiniz.
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Link
+          href="/iletisim"
+          className="cta-primary"
+        >
+          Hemen İletişime Geç
+        </Link>
+
+        <a
+          href="https://wa.me/905XXXXXXXXX"
+          target="_blank"
+          className="cta-secondary"
+        >
+          WhatsApp ile Yazın
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <style>{`
+    .cta-box {
+      background: linear-gradient(135deg, #ffffff, #f8f5ef);
+      border: 1px solid #e6d6bf;
+      border-radius: 28px;
+      padding: 60px 40px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cta-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+    }
+
+    .cta-primary {
+      background: #c69b65;
+      color: #ffffff;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .cta-primary:hover {
+      background: #b08d57;
+      transform: translateY(-2px);
+    }
+
+    .cta-secondary {
+      border: 1px solid #c69b65;
+      color: #c69b65;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .cta-secondary:hover {
+      background: #c69b65;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+  `}</style>
+</section>
 
       {/* 🔒 MAKALELER İÇİN GÜVENLİ BOŞLUK – ÜST ÜSTE BİNMESİN */}
       <div style={{ height: "100px" }} />
