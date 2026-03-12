@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://siteadi.com/sitemap.xml",
+    sitemap: "https://gamzeyildirim.av.tr/sitemap.xml",
   };
 }

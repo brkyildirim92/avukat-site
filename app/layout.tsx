@@ -28,7 +28,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://siteadi.com"),
+  metadataBase: new URL("https://gamzeyildirim.av.tr"),
 
   title: {
     default: "İstanbul Avukat | Online Hukuki Danışmanlık",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Avukat Gamze Yıldırım",
     description:
       "Ceza hukuku, boşanma davaları ve iş hukuku alanlarında hukuki danışmanlık.",
-    url: "https://siteadi.com",
+    url: "https://gamzeyildirim.av.tr",
     siteName: "Avukat Gamze Yıldırım",
     locale: "tr_TR",
     type: "website",
@@ -73,13 +73,13 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LegalService",
               name: "İstanbul Freelance Avukat",
-              url: "https://siteadi.com",
+              url: "https://gamzeyildirim.av.tr",
               areaServed: { "@type": "Place", name: "İstanbul" },
               availableChannel: {
                 "@type": "ServiceChannel",
                 serviceLocation: {
                   "@type": "VirtualLocation",
-                  url: "https://siteadi.com",
+                  url: "https://gamzeyildirim.av.tr",
                 },
               },
               sameAs: ["https://wa.me/905000000000"],

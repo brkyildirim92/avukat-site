@@ -92,8 +92,8 @@ export default function Footer() {
                 </h4>
                 <ul className="space-y-4 text-sm">
                   <li>
-                    Hacı Adil Caddesi No:19<br />
-                    xxxx / xxxx – İstanbul
+                    Maslak<br />
+                    Bakırköy – İstanbul
                   </li>
                   <li>Tel: +90 xxx xx xx</li>
                   <li>E-posta: xxxxxxx@.av.tr</li>

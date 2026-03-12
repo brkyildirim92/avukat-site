@@ -24,13 +24,13 @@
           </p>
 
           <p>
-            GamzeYıldırım.av.tr internet sitesi Avukatlık Kanunu ve bu kanuna
+            gamzeyildirim.av.tr internet sitesi Avukatlık Kanunu ve bu kanuna
             isnat ile çıkarılmış mevzuat ve Türkiye Barolar Birliği’nce ilan
             olunan Meslek Kuralları çerçevesinde hazırlanmıştır.
           </p>
 
           <p>
-            GamzeYıldırım.av.tr internet sitesinde yer alan tüm bilgi, belgeler
+            gamzeyildirim.av.tr internet sitesinde yer alan tüm bilgi, belgeler
             ve tasarımlar reklam amacı taşımamakta olup, yalnızca bilgilendirici
             niteliktedir.
           </p>
@@ -41,7 +41,7 @@
           </p>
 
           <p>
-            GamzeYıldırım.av.tr internet sitesinde yer alan tüm bilgi, belge ve
+            gamzeyildirim.av.tr internet sitesinde yer alan tüm bilgi, belge ve
             tasarımlar ile bunlara ilişkin fikri mülkiyet hakları Avukat Gamze
             Yıldırım’a ait olup, yazılı izin alınmadan kopyalanamaz veya
             kullanılamaz.
@@ -53,7 +53,7 @@
           </p>
 
           <p>
-            GamzeYıldırım.av.tr internet sitesinde sunulan bilgi ve belgeler
+            gamzeyildirim.av.tr internet sitesinde sunulan bilgi ve belgeler
             nedeniyle herhangi bir sorumluluk kabul edilmemektedir.
           </p>
 
@@ -67,7 +67,7 @@
           <p>
             Ziyaretçiler, internet sitesinde yer alan bilgi ve belgeler
             nedeniyle herhangi bir zarara uğradıklarını iddia edemezler.
-            GamzeYıldırım.av.tr internet sitesi reklam veya iş geliştirme
+            gamzeyildirim.av.tr internet sitesi reklam veya iş geliştirme
             amacıyla kullanılamaz.
           </p>
 
@@ -97,7 +97,7 @@
           </p>
 
           <p>
-            GamzeYıldırım.av.tr, bağlantı verilen sitelerde yer alan içeriklerin
+            gamzeyildirim.av.tr, bağlantı verilen sitelerde yer alan içeriklerin
             doğruluğu, güncelliği veya eksiksizliği konusunda herhangi bir
             garanti vermemektedir.
           </p>

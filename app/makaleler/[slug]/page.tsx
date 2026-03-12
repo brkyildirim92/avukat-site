@@ -440,7 +440,7 @@ export async function generateMetadata(
       .slice(0, 160)
       .replace(/\n/g, " "),
     alternates: {
-      canonical: `https://siteadi.com/makaleler/${article.slug}`,
+      canonical: `https://gamzeyildirim.av.tr/makaleler/${article.slug}`,
     },
     openGraph: {
       title: article.title,
@@ -485,7 +485,7 @@ export default async function MakaleDetayPage({ params }: Props) {
             datePublished: article.date,
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://siteadi.com/makaleler/${article.slug}`,
+              "@id": `https://gamzeyildirim.av.tr/makaleler/${article.slug}`,
             },
           }),
         }}
