@@ -7,3 +7,5 @@ export default function robots() {
     sitemap: "https://gamzeyildirim.av.tr/sitemap.xml",
   };
 }
+
+

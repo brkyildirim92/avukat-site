@@ -92,11 +92,11 @@ export default function Footer() {
                 </h4>
                 <ul className="space-y-4 text-sm">
                   <li>
-                    Maslak<br />
-                    Bakırköy – İstanbul
+                    Maslak - Bakırköy <br/>
+                    İSTANBUL
                   </li>
-                  <li>Tel: +90 xxx xx xx</li>
-                  <li>E-posta: xxxxxxx@.av.tr</li>
+                  <li>Tel: +90 544 737 00 09</li>
+                  <li>E-posta: gamzeyildirim@istanbul.av.tr</li>
                 </ul>
               </div>
 

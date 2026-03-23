@@ -23,19 +23,21 @@ export default function HakkimizdaPage() {
           style={{ color: "#9b9b9b" }}
         >
           <p>
-            Avukat Gamze Yıldırım, İstanbul merkezli olarak bireysel ve
-            kurumsal müvekkillerine hukuki danışmanlık ve dava takibi
-            hizmeti sunmaktadır.
+            Avukat Gamze Yıldırım, İstanbul merkezli olarak bireysel ve kurumsal müvekkillerine hukuki danışmanlık ve dava takibi hizmeti sunmaktadır.
+            Hukuki süreçlerde doğru analiz, şeffaf iletişim ve çözüm odaklı yaklaşım esas alınmakta; 
+            her dosya, somut olayın özellikleri dikkate alınarak titizlikle değerlendirilmekte ve müvekkillerin ihtiyaçlarına uygun stratejiler geliştirilmektedir. 
           </p>
 
           <p>
-            Hukuki süreçlerde doğru analiz, şeffaf iletişim ve çözüm
-            odaklı yaklaşım benimsenmektedir.
+            Sürecin her aşamasında müvekkiller düzenli olarak bilgilendirilmekte, hukuki riskler öngörülerek etkin ve planlı bir süreç yönetimi sağlanmaktadır.
+            Uyuşmazlıkların çözümüne yönelik faaliyetlerin yanı sıra, önleyici hukuk anlayışı çerçevesinde, potansiyel hukuki risklerin henüz ortaya çıkmadan tespit edilmesi ve bu risklerin en aza indirilmesine yönelik danışmanlık hizmetleri sunulmaktadır. 
+            Bu kapsamda, sözleşmesel ilişkilerin yapılandırılması, hukuki denetim ve süreçlerin mevzuata uygun şekilde yürütülmesi hususlarında müvekkillere destek sağlanmaktadır.
           </p>
 
           <p>
-            Ceza hukuku, aile hukuku, iş hukuku ve sözleşmeler hukuku
-            başta olmak üzere geniş bir alanda hizmet vermektedir.
+            Bireysel ve kurumsal müvekkillerin faaliyet alanlarına ve ihtiyaçlarına özel olarak geliştirilen hukuki 
+            çözümler ile yalnızca mevcut uyuşmazlıkların çözümü değil, aynı zamanda uzun vadeli hukuki güvenliğin sağlanması ve olası risklerin önlenmesi hedeflenmektedir. 
+            Bu doğrultuda, güvenilir, sürdürülebilir ve etkin bir hukuki hizmet anlayışı benimsenmektedir.
           </p>
         </div>
 

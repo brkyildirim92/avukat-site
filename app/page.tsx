@@ -8,13 +8,16 @@ import {
   Laptop,
   Gavel,
   Home as HomeIcon,
+  HousePlus,
   Layers,
+  FileBadge,
+  Handshake,
 } from "lucide-react";
 import Link from "next/link";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "700", "800"],
 });
 
 // ⬇️ AYARLANABİLİR MAKALE KART DEĞİŞKENLERİ
@@ -24,15 +27,18 @@ const articleCardRadius = "20px";
     
 
 const services = [
-  { title: "Ceza Hukuku", icon: Scale },
-  { title: "Aile Hukuku", icon: Users },
-  { title: "İş Hukuku", icon: Briefcase },
-  { title: "Borçlar ve Sözleşmeler", icon: FileText },
-  { title: "Ticaret Hukuku", icon: Building2 },
-  { title: "Bilişim Hukuku", icon: Laptop },
-  { title: "İcra ve İflas", icon: Gavel },
-  { title: "Gayrimenkul Hukuku", icon: HomeIcon },
-  { title: "Diğer Hukuki Konular", icon: Layers },
+  { title: "Ceza Hukuku", icon: Scale, link: "/ceza-avukati"},
+  { title: "Aile Hukuku", icon: Users, link:"/bosanma-avukati"},
+  { title: "İş Hukuku", icon: Briefcase,link: "/is-hukuku-avukati"},
+  { title: "Borçlar ve Sözleşmeler", icon: FileText,link: "/sozlesmeler-borclar-hukuku-avukati"},
+  { title: "Ticaret Hukuku", icon: Building2, link:"/ticaret-avukati" },
+  { title: "Bilişim Hukuku", icon: Laptop,link:"/bilisim-avukati"},
+  { title: "İcra ve İflas", icon: Gavel,link:"/icra-avukati"},
+  { title: "Gayrimenkul Hukuku", icon: HomeIcon,link:"/gayrimenkul-avukati"},
+  { title: "Diğer Hukuki Konular", icon: Layers,link:"/hukuki-konular-avukati" },
+  { title: "Kira Hukuku", icon: HousePlus,link:"/istanbul-kira-avukati" },
+  { title: "Tazminat Hukuku", icon: FileBadge,link:"/istanbul-tazminat-avukati" },
+  { title: "Arabuluculuk", icon: Handshake,link:"istanbul-arabuluculuk-avukati" },
 ];
 
 
@@ -108,7 +114,7 @@ export default function Home() {
   return (
     <>
 {/* HERO */}
-<section className="relative w-full h-screen flex items-center overflow-hidden">
+<section className="relative w-full h-screen flex items-center overflow-hidden pt-[220px] md:pt-0">
 
   {/* Arka Plan */}
   <div
@@ -121,10 +127,12 @@ export default function Home() {
   />
 
   {/* Blur + Dark Overlay */}
-  <div className="absolute inset-0 backdrop-blur-[2px] bg-black/40" />    {/* Ana Foto Blur Ayarı */}
+  <div className="absolute inset-0 backdrop-blur-[2px] bg-black/40" />
 
   {/* İçerik */}
   <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+
+    {/* 🔥 H1 (ANA SEO BAŞLIK) */}
     <h1
       className={`text-4xl md:text-5xl font-semibold leading-tight ${playfair.className}`}
       style={{
@@ -133,88 +141,132 @@ export default function Home() {
         WebkitBackgroundClip: "text",
       }}
     >
-      Avukat Gamze Yıldırım
+       Avukat Gamze Yıldırım
     </h1>
 
+    {/* 🔥 ALT METİN (SEO + GÜVEN) */}
     <p
-      className={`mt-12 text-lg ${playfair.className}`}
-      style={{
-        color: "#c69b65",
-        background: "linear-gradient(45deg, #8c6b2f, #b08d57, #6f5323)",
-        WebkitBackgroundClip: "text",
-        
-        maxWidth: "720px",
-        lineHeight: "2.2",
-        margin: "0 auto",
-      }}
-    >
-      Bireysel olarak çalışan bir avukat olarak, İstanbul merkezli ve Online
-      hukuki danışmanlık hizmeti sunuyorum.
+        className={`mt-14 text-lg ${playfair.className}`}
+        style={{
+            color: "#c69b65",
+            background: "linear-gradient(45deg, #8c6b2f, #b08d57, #6f5323)",
+            WebkitBackgroundClip: "text",
+            maxWidth: "720px",
+            lineHeight: "2.2",
+            marginLeft: "auto",
+            marginRight: "auto",
+        }}
+      >
+        Gamze Yıldırım Avukatlık Bürosu, İstanbul merkezli, Türk hukuk bürosudur.
+        Büromuz, müvekkillerine kaliteli hukuki hizmet sunmayı taahhüt etmektedir. 
+        Türk hukukuna ilişkin bilgi birikimini, stratejik ve çözüm odaklı bir yaklaşımla birleştirerek, 
+        müvekkillerimizin değişen ihtiyaçlarına uygun hukuki çözümler geliştirmektedir.
     </p>
-  </div>
 
+    {/* 🔥 CTA BUTON (DÖNÜŞÜM ARTTIRIR) */}
+    <div className="mt-10 flex justify-center gap-4 flex-wrap">
+      <a
+        href="/iletisim"
+        className="px-8 py-3 rounded-full text-white font-medium transition"
+        style={{
+          background: "#c69b65",
+        }}
+      >
+        İletişime Geç
+      </a>
+
+      <a
+        href="https://wa.me/905447370009"
+        className="px-8 py-3 rounded-full border border-[#c69b65] text-[#c69b65] font-medium transition"
+      >
+        WhatsApp
+      </a>
+    </div>
+
+  </div>
 </section>
 
       <div style={{ height: spaceAfterHero }} />
 
-      {/* HİZMETLER */}
-      <section className="bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2
-            className={`text-3xl md:text-4xl font-semibold text-center text-gray-900 ${playfair.className}`}
-            style={{
-              marginBottom: spaceAfterTitle,
-              scrollMarginTop: "130px",
-            }}
-          >
-            Hukuki Danışmanlık ve Arabuluculuk
-          </h2>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {services.map(({ title, icon: Icon }) => (
-              <div key={title} className="service-card">
-                <Icon className="service-icon" size={34} />
-                <h3 className="service-title">{title}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
+{/* HİZMETLER */}
+{/* HİZMETLER */}
+<section className="bg-white">
+  <div className="max-w-4xl mx-auto px-4">
+    <h2
+      className={`text-3xl md:text-4xl font-semibold text-center text-gray-900 ${playfair.className}`}
+      style={{
+        marginBottom: spaceAfterTitle,
+        scrollMarginTop: "130px",
+      }}
+    >
+      Hukuki Danışmanlık ve Arabuluculuk
+    </h2>
 
-        <style>{`
-          .service-card {
-            background: #ffffff;
-            border: 1px solid #e6d6bf;
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-          }
-          .service-card:hover {
-            background: #c69b65;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            transform: translateY(-4px);
-          }
-          .service-icon {
-            margin: 0 auto 16px;
-            color: #c69b65;
-            transition: color 0.3s ease, transform 0.3s ease;
-          }
-          .service-card:hover .service-icon {
-            color: #ffffff;
-            transform: scale(1.1);
-          }
-          .service-title {
-            font-size: 18px;
-            font-weight: 500;
-            color: #1f2937;
-            transition: color 0.3s ease;
-          }
-          .service-card:hover .service-title {
-            color: #ffffff;
-          }
-        `}</style>
-      </section>
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {services.map(({ title, icon: Icon, link }) => {
+        // Kartın hangi sayfaya gideceğini belirle
+        let href = "#"; // default link
+        if (title === "Ceza Hukuku") href = "/ceza-avukati";
+        else if (title === "Aile Hukuku") href = "/bosanma-avukati";
+        else if (title === "İş Hukuku") href = "/is-hukuku-avukati";
+        else if (title === "Borçlar ve Sözleşmeler") href = "/sozlesmeler-borclar-hukuku-avukati";
+        else if (title === "Ticaret Hukuku") href = "/ticaret-avukati";
+        else if (title === "Bilişim Hukuku") href = "/bilisim-avukati";
+        else if (title === "İcra ve İflas") href = "/icra-avukati";
+        else if (title === "Gayrimenkul Hukuku") href = "/gayrimenkul-avukati";
+        else if (title === "Diğer Hukuki Konular") href = "/hukuki-konular-avukati";
+        else if (title === "Kira Hukuku") href = "/istanbul-kira-avukati";
+        else if (title === "Tazminat Hukuku") href = "/istanbul-tazminat-avukati";
+        else if (title === "Arabuluculuk") href = "/istanbul-arabuluculuk-avukati";
+
+        return (
+          <Link key={title} href={href}>
+            <div className="service-card cursor-pointer">
+              <Icon className="service-icon" size={34} />
+              <h3 className="service-title">{title}</h3>
+            </div>
+          </Link>
+        );
+      })}
+    </div>
+  </div>
+
+  <style>{`
+    .service-card {
+      background: #ffffff;
+      border: 1px solid #e6d6bf;
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .service-card:hover {
+      background: #c69b65;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      margin: 0 auto 16px;
+      color: #c69b65;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .service-card:hover .service-icon {
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+    .service-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #1f2937;
+      transition: color 0.3s ease;
+    }
+    .service-card:hover .service-title {
+      color: #ffffff;
+    }
+  `}</style>
+</section>
+
       {/* 🛡️ TRUST SECTION – MINIMAL ELITE */}
 <section className="bg-white py-20">
   <div className="max-w-6xl mx-auto px-6">
@@ -236,7 +288,7 @@ export default function Home() {
             Birebir Süreç Yönetimi
           </h4>
           <p className="text-sm leading-7 text-gray-600">
-            Tüm hukuki süreçler doğrudan tarafımdan yürütülür. 
+            Tüm hukuki süreçler doğrudan tarafımızdan yürütülür. 
             Müvekkil ile düzenli ve şeffaf iletişim esastır.
           </p>
         </div>
@@ -270,8 +322,8 @@ export default function Home() {
 </section>
 
       {/* 🚀 İLETİŞİME YÖNLENDİRME BLOĞU */}
-<section className="bg-white py-16">
-  <div className="max-w-4xl mx-auto px-6">
+<section className="bg-white py-6">
+  <div className="max-w-5xl mx-auto px-6">
 
     <div className="cta-box text-center">
       <h3 className={`text-2xl md:text-3xl font-semibold mb-6 ${playfair.className}`}>
@@ -280,7 +332,7 @@ export default function Home() {
 
       <p className="text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
         Hukuki bir sorunla karşı karşıyaysanız, süreci doğru ve stratejik şekilde
-        yönetmek büyük önem taşır. İlk değerlendirme için benimle iletişime geçebilirsiniz.
+        yönetmek büyük önem taşır. İlk değerlendirme için bizimle iletişime geçebilirsiniz.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -292,7 +344,7 @@ export default function Home() {
         </Link>
 
         <a
-          href="https://wa.me/905XXXXXXXXX"
+          href="https://wa.me/905447370009"
           target="_blank"
           className="cta-secondary"
         >

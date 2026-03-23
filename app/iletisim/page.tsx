@@ -1,6 +1,6 @@
 ﻿export default function IletisimPage() {
   return (
-    <section className="page-fade-in pt-[140px] pb-24">
+    <section className="page-fade-in pt-[120px] pb-24">
 
       <div className="max-w-3xl mx-auto px-6">
 
@@ -51,7 +51,7 @@
             <div>
               <label className="contact-label">Mesajınız</label>
               <textarea
-                rows={4}
+                rows={2}
                 placeholder="Kısaca hukuki konunuzu anlatınız..."
                 className="contact-textarea"
               />
@@ -61,7 +61,13 @@
             <button type="submit" className="contact-button">
               Gönder
             </button>
-
+            <a
+              href="https://wa.me/905447370009"
+              target="_blank"
+              className="whatsapp-button"
+            >
+              WhatsApp ile İletişime Geç
+            </a>
           </form>
         </div>
       </div>
@@ -70,7 +76,7 @@
       <style>{`
         .contact-card {
           max-width: 520px; /* ⬅️ KART DARALTILDI */
-          margin: 0 auto 100px auto; /* ⬅️ SADECE BU SATIR EKLENDİ */
+          margin: 0 auto 80px auto; /* ⬅️ SADECE BU SATIR EKLENDİ */
           background: #ffffff;
           border: 2px solid #e6d6bf;
           border-radius: 20px;
@@ -141,6 +147,26 @@
 
         .contact-button:hover {
           background: #b89055;
+          transform: translateY(-2px);
+        }
+
+        .whatsapp-button {
+          display: block;
+          margin-top: 10px;
+          width: 100%;
+          padding: 14px;
+          border-radius: 9999px;
+          text-align: center;
+          font-size: 14px;
+          font-weight: 500;
+          border: 1px solid #c69b65;
+          color: #c69b65;
+          transition: all 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+          background: #c69b65;
+          color: white;
           transform: translateY(-2px);
         }
       `}</style>
