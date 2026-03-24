@@ -177,6 +177,8 @@ export default function Home() {
 
       <a
         href="https://wa.me/905447370009"
+        target="_blank"
+        rel="nooper noreferrer"
         className="px-8 py-3 rounded-full border border-[#c69b65] text-[#c69b65] font-medium transition"
       >
         WhatsApp
@@ -346,6 +348,7 @@ export default function Home() {
         <a
           href="https://wa.me/905447370009"
           target="_blank"
+          rel="noopener noreferrer"
           className="cta-secondary"
         >
           WhatsApp ile Yazın

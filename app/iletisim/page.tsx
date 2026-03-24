@@ -64,6 +64,7 @@
             <a
               href="https://wa.me/905447370009"
               target="_blank"
+              rel="noopener noreferrer"
               className="whatsapp-button"
             >
               WhatsApp ile İletişime Geç

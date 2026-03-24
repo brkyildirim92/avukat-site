@@ -124,6 +124,8 @@ export default function RootLayout({
         {/* WhatsApp Sabit Buton */}
         <a
           href="https://wa.me/905447370009"
+          target="_blank"
+          rel="noopener noreferrer"
           className="fixed bottom-0 right-0 z-50 flex items-center gap-2 transition hover:bg-green-600"
           style={{
             backgroundColor: "#262b3e",
