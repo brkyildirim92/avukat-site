@@ -68,17 +68,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="tr">
-      <head>
-        {/* 🔑 Favicon */}
-        <link rel="icon" href="/avklogo.png" sizes="32x32" type="image/png" />
-        <link rel="icon" href="/avklogo.png" sizes="192x192" type="image/png" />
+        <head>
+          {/* 🔑 Favicon */}
+          <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
+          <link rel="icon" href="/favicon.png" sizes="192x192" type="image/png" />
 
-        {/* 🔑 OpenGraph Image */}
-        <meta property="og:image" content="https://gamzeyildirim.av.tr/avklogo.png" />
-        <meta property="og:image:width" content="512" />
-        <meta property="og:image:height" content="512" />
-        <meta property="og:image:alt" content="Avukat Gamze Yıldırım Logo" />
-      </head>
+          {/* 🔑 OpenGraph Image */}
+          <meta property="og:image" content="https://gamzeyildirim.av.tr/avklogo.png" />
+          <meta property="og:image:width" content="512" />
+          <meta property="og:image:height" content="512" />
+          <meta property="og:image:alt" content="Avukat Gamze Yıldırım Logo" />
+        </head>
 
       <body className="bg-white text-gray-800">
         {/* SEO Schema */}
