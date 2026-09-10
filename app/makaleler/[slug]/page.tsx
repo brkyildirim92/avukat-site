@@ -1,5 +1,14 @@
 ﻿import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
+import { playfair } from "../../fonts";
+import JsonLd from "../../components/JsonLd";
+import {
+  absoluteUrl,
+  createBreadcrumbJsonLd,
+  createPageMetadata,
+  siteConfig,
+} from "../../lib/seo";
 
 
 const articles = [
@@ -408,10 +417,28 @@ ve dava takibi hizmeti sunmaktadır.
 ];
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
+
+const turkishMonths: Record<string, string> = {
+  Ocak: "01", Şubat: "02", Mart: "03", Nisan: "04", Mayıs: "05", Haziran: "06",
+  Temmuz: "07", Ağustos: "08", Eylül: "09", Ekim: "10", Kasım: "11", Aralık: "12",
+};
+
+function toIsoDate(date: string) {
+  const [day, month, year] = date.split(" ");
+  return `${year}-${turkishMonths[month]}-${day.padStart(2, "0")}`;
+}
+
+function toIsoDateTime(date: string) {
+  return `${toIsoDate(date)}T00:00:00+03:00`;
+}
+
+function getArticleDescription(content: string) {
+  return content.trim().replace(/\s+/g, " ").slice(0, 155);
+}
 
 /* ✅ STATİK SAYFA ÜRETİMİ (SEO + HIZ) */
 export async function generateStaticParams() {
@@ -433,23 +460,13 @@ export async function generateMetadata(
     return { title: "Makale Bulunamadı" };
   }
 
-  return {
+  return createPageMetadata({
     title: article.title,
-    description: article.content
-      .trim()
-      .slice(0, 160)
-      .replace(/\n/g, " "),
-    alternates: {
-      canonical: `https://gamzeyildirim.av.tr/makaleler/${article.slug}`,
-    },
-    openGraph: {
-      title: article.title,
-      description: article.content
-        .trim()
-        .slice(0, 160),
-      type: "article",
-    },
-  };
+    description: getArticleDescription(article.content),
+    path: `/makaleler/${article.slug}`,
+    type: "article",
+    publishedTime: toIsoDateTime(article.date),
+  });
 }
 
 
@@ -458,163 +475,176 @@ export async function generateMetadata(
 export default async function MakaleDetayPage({ params }: Props) {
   const { slug } = await params;
 
-  const article = articles.find((a) => a.slug === slug);
+  const article = articles.find((item) => item.slug === slug);
 
   if (!article) {
     notFound();
   }
 
+  const currentIndex = articles.findIndex((item) => item.slug === article.slug);
+  const relatedArticle = articles[(currentIndex + 1) % articles.length];
+  const articleUrl = absoluteUrl(`/makaleler/${article.slug}`);
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: getArticleDescription(article.content),
+    inLanguage: siteConfig.language,
+    author: {
+      "@type": "Person",
+      "@id": `${siteConfig.url}/#person`,
+      name: siteConfig.personName,
+      honorificPrefix: "Av.",
+      jobTitle: "Avukat",
+      url: absoluteUrl("/hakkimizda"),
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${siteConfig.url}/#legal-service`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl(siteConfig.logoImage),
+        width: 512,
+        height: 512,
+      },
+    },
+    datePublished: toIsoDateTime(article.date),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+  };
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "Ana Sayfa", path: "/" },
+    { name: "Makaleler", path: "/makaleler" },
+    { name: article.title, path: `/makaleler/${article.slug}` },
+  ]);
+
   return (
-    <section className="page-fade-in">
-          {/* ✅ STRUCTURED DATA – ARTICLE (SEO) */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: article.title,
-            description: article.content
-              .trim()
-              .slice(0, 160)
-              .replace(/\n/g, " "),
-            author: {
-              "@type": "Person",
-              name: "Avukat Gamze Yıldırım",
-            },
-            datePublished: article.date,
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": `https://gamzeyildirim.av.tr/makaleler/${article.slug}`,
-            },
-          }),
-        }}
-      />
+    <>
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
 
-      {/* 🔹 KART */}
-      <div className="article-card max-w-3xl mx-auto">
-        <article>
-
-          {/* TARİH */}
-          <p className="article-date text-xs mb-4">
-            {article.date}
-          </p>
-
-          {/* BAŞLIK */}
-          <h1 className="article-title font-semibold" style={{ marginBottom: "24px" }}>
-            {article.title}
-          </h1>
-
-          {/* İÇERİK */}
-          <div className="article-content space-y-6 text-sm leading-relaxed">
-            {article.content
-              .trim()
-              .split("\n\n")
-              .map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
-
-            {/* ✅ INTERNAL LINK (SEO) */}
-            <p>
-              İlgili makale:&nbsp;
-              <a
-                href="/makaleler/bosanma-davalarinda-nafaka-turleri"
-                className="text-[#c69b65]"
+      <div className="page-fade-in bg-white">
+        <section className="border-b border-[#dfe5e9] bg-[#f3f6f8] px-6 pb-14 pt-[150px] md:pb-18 md:pt-[175px]">
+          <div className="mx-auto max-w-6xl">
+            <Link
+              href="/makaleler"
+              className="group inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#a97c2e] transition hover:text-[#10263e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c69b66]"
+            >
+              <span className="h-px w-10 bg-[#c69b66] transition-all group-hover:w-14" aria-hidden="true" />
+              Makaleler
+            </Link>
+            <time
+              dateTime={toIsoDate(article.date)}
+              className="mt-6 block text-xs font-semibold uppercase tracking-[0.12em] text-[#667487]"
+            >
+              {article.date}
+            </time>
+            <h1 className={`${playfair.className} mt-4 max-w-5xl text-4xl font-medium italic leading-tight text-[#10263e] md:text-5xl`}>
+              {article.title}
+            </h1>
+            <p className="mt-5 text-sm text-[#667487]">
+              Yazan:{" "}
+              <Link
+                href="/hakkimizda"
+                rel="author"
+                className="font-medium text-[#10263e] underline decoration-[#c69b66] underline-offset-4 transition hover:text-[#a97c2e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c69b66]"
               >
-                Boşanma Davalarında Nafaka Türleri
-              </a>
+                Avukat Gamze Yıldırım
+              </Link>
             </p>
           </div>
+        </section>
 
-        </article>
+        <section className="px-6 py-12 md:py-16">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-start">
+            <article aria-label={article.title} className="max-w-3xl">
+              <div className="space-y-6 border-t border-[#d6dde3] pt-8">
+                {article.content
+                  .trim()
+                  .split("\n\n")
+                  .map((paragraph, index) => {
+                    const text = paragraph.trim();
+                    const isSectionHeading = text.endsWith(":") && text.length < 120;
+
+                    if (isSectionHeading) {
+                      return (
+                        <h2
+                          key={index}
+                          className={`${playfair.className} pt-5 text-2xl font-medium italic leading-tight text-[#10263e] md:text-[1.8rem]`}
+                        >
+                          {text.slice(0, -1)}
+                        </h2>
+                      );
+                    }
+
+                    return (
+                      <p
+                        key={index}
+                        className={`whitespace-pre-line leading-8 text-[#526273] ${index === 0 ? "text-lg" : "text-base"}`}
+                      >
+                        {text}
+                      </p>
+                    );
+                  })}
+              </div>
+
+              <div className="mt-12 border-y border-[#d6dde3] bg-[#f4f1eb] px-6 py-7">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#a97c2e]">
+                  Sonraki Makale
+                </p>
+                <Link
+                  href={`/makaleler/${relatedArticle.slug}`}
+                  className="group mt-3 inline-flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c69b66]"
+                >
+                  <span className={`${playfair.className} text-xl font-medium italic text-[#10263e] transition group-hover:text-[#a97c2e]`}>
+                    {relatedArticle.title}
+                  </span>
+                  <span className="text-[#a97c2e] transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </article>
+
+            <aside className="border border-[#d6dde3] bg-[#f4f1eb] p-6 md:p-7 lg:sticky lg:top-32">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#a97c2e]">
+                Yazar
+              </p>
+              <h2 className={`${playfair.className} mt-4 text-2xl font-medium italic leading-snug text-[#10263e]`}>
+                <Link
+                  href="/hakkimizda"
+                  rel="author"
+                  className="transition hover:text-[#a97c2e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c69b66]"
+                >
+                  Avukat Gamze Yıldırım
+                </Link>
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-[#667487]">
+                Ceza Hukuku, Aile Hukuku ve İş Hukuku alanlarında hukuki danışmanlık hizmeti vermektedir.
+              </p>
+              <p className="mt-4 text-xs leading-6 text-[#7b8794]">
+                Bu makale genel bilgilendirme amacıyla hazırlanmıştır; somut hukuki durumlar kendi koşulları içinde değerlendirilmelidir.
+              </p>
+              <Link
+                href="/iletisim"
+                className="group mt-6 inline-flex w-full items-center justify-center gap-3 bg-[#10263e] px-5 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-[#c69b66] hover:text-[#10263e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c69b66] focus-visible:ring-offset-4"
+              >
+                İletişime Geç
+                <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="/makaleler"
+                className="group mt-5 inline-flex items-center gap-2 border-b border-[#c9cfd5] pb-1 text-xs font-semibold uppercase tracking-[0.1em] text-[#10263e] transition hover:border-[#a97c2e] hover:text-[#a97c2e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c69b66]"
+              >
+                Tüm Makaleler
+                <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+              </Link>
+            </aside>
+          </div>
+        </section>
       </div>
-
-      {/* 👤 AUTHOR BOX – E-A-T */}
-      <div className="author-box max-w-3xl mx-auto mt-10">
-        <p className="author-title">
-          ✍️ Bu makale <strong>Avukat Gamze Yıldırım</strong> tarafından hazırlanmıştır.
-        </p>
-        <p className="author-desc">
-          Ceza Hukuku, Aile Hukuku ve İş Hukuku alanlarında hukuki danışmanlık hizmeti vermektedir.
-        </p>
-        <a href="/iletisim" className="author-link">
-          Hukuki danışmanlık için iletişime geç →
-        </a>
-      </div>
-
-      {/* 🔹 KART STİLİ */}
-      <style>{`
-        .article-card {
-          background: #ffffff;
-          border: 1px solid #e6d6bf;
-          border-radius: 16px;
-          padding: 48px;
-          transition: 
-            background 0.3s ease,
-            box-shadow 0.3s ease,
-            transform 0.3s ease;
-        }
-
-        .article-card:hover {
-          background: #c69b65;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-          transform: translateY(-4px);
-        }
-
-        .article-title {
-          font-size: 18px;
-          color: #1f2937;
-          transition: color 0.3s ease;
-        }
-
-        .article-content {
-          color: #9b9b9b;
-          transition: color 0.3s ease;
-        }
-
-        .article-date {
-          color: #1a0c0c;
-          transition: color 0.3s ease;
-        }
-
-        .article-card:hover .article-title,
-        .article-card:hover .article-content,
-        .article-card:hover .article-date {
-          color: #ffffff;
-        }
-
-        /* AUTHOR BOX */
-        .author-box {
-          background: #faf7f2;
-          border: 1px solid #e6d6bf;
-          border-radius: 14px;
-          padding: 24px;
-          text-align: center;
-        }
-
-        .author-title {
-          font-size: 14px;
-          color: #1f2937;
-          margin-bottom: 6px;
-        }
-
-        .author-desc {
-          font-size: 13px;
-          color: #6b7280;
-          margin-bottom: 10px;
-        }
-
-        .author-link {
-          font-size: 13px;
-          color: #c69b65;
-          font-weight: 500;
-        }
-
-        .author-link:hover {
-          text-decoration: underline;
-        }
-      `}</style>
-    </section>
+    </>
   );
 }
-

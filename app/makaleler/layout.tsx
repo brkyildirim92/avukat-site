@@ -1,55 +1,16 @@
-﻿import { poppins } from "@/app/layout";
+import { createPageMetadata } from "../lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Hukuk Makaleleri",
+  description:
+    "Çeşitli hukuk alanlarındaki temel kavram ve süreçlere ilişkin genel bilgilendirme yazıları.",
+  path: "/makaleler",
+});
 
 export default function MakalelerLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="bg-white min-h-screen">
-
-      {/* 🔹 SAYFA BAŞLIĞI */}
-      <div className="pt-[140px] pb-16">
-        <div className="px-6">
-
-          <div
-            className="
-              flex items-center gap-3
-              justify-center md:justify-start
-            "
-          >
-            {/* SOL ÇİZGİ */}
-            <div
-              className="
-                h-[3px]
-                w-16 sm:w-24 md:w-[260px] lg:w-[390px]
-                bg-[#c69b65]
-                rounded-full
-              "
-            />
-
-            {/* BAŞLIK */}
-            <h1
-              className={`
-                ${poppins.className}
-                text-[18px] md:text-[20px]
-                font-medium
-                whitespace-nowrap
-              `}
-              style={{ color: "#c69b65" }}
-            >
-              Makaleler
-            </h1>
-          </div>
-
-        </div>
-      </div>
-
-      {/* 📄 İÇERİK */}
-      <main className="max-w-7xl mx-auto px-6 pb-32">
-        {children}
-      </main>
-
-    </div>
-  );
+  return <div className="min-h-screen bg-white">{children}</div>;
 }

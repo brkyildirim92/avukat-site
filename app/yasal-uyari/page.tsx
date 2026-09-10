@@ -2,7 +2,7 @@
   return (
     <div className="bg-[#262b3e] text-gray-200 min-h-screen">
 
-      <main className="max-w-3xl mx-auto px-6 py-24">
+      <div className="max-w-3xl mx-auto px-6 py-24">
 
         <h1 className="text-3xl font-semibold mt-6 mb-12 text-center text-white">
           Yasal Uyarı
@@ -103,7 +103,7 @@
           </p>
 
         </div>
-      </main>
+      </div>
 
     </div>
   );

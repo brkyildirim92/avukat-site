@@ -1,64 +1,164 @@
 ﻿import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { FaWhatsapp } from "react-icons/fa";
-import Image from "next/image";
 import { Poppins } from "next/font/google";
-import NavLink from "./components/NavLink";
 import ScrollNavbar from "./components/ScrollNavbar";
-import Link from "next/link";
-import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import Footer from "./components/Footer";
 import Navbar from "./components/navbar";
+import JsonLd from "./components/JsonLd";
+import DocumentLanguage from "./components/DocumentLanguage";
+import { absoluteUrl, expertiseTopics, siteConfig, socialProfiles } from "./lib/seo";
 
 export const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gamzeyildirim.av.tr"),
+  metadataBase: new URL(siteConfig.url),
 
   title: {
-    default: "İstanbul Avukat | Online Hukuki Danışmanlık",
-    template: "%s | Avukat Gamze Yıldırım",
+    default: `${siteConfig.name} | İstanbul`,
+    template: `%s | ${siteConfig.name}`,
   },
 
-  description:
-    "İstanbul merkezli freelance avukat. Online ve yüz yüze hukuki danışmanlık.",
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.personName, url: "/hakkimizda" }],
+  creator: siteConfig.personName,
+  publisher: siteConfig.name,
+  category: "Hukuk",
+  alternates: { canonical: "/" },
+  formatDetection: {
+    address: false,
+    email: false,
+    telephone: false,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: [{ url: "/favicon-32x32.png", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 
   openGraph: {
-    title: "Avukat Gamze Yıldırım",
-    description:
-      "Ceza hukuku, boşanma davaları ve iş hukuku alanlarında hukuki danışmanlık.",
-    url: "https://gamzeyildirim.av.tr",
-    siteName: "Avukat Gamze Yıldırım",
-    locale: "tr_TR",
+    title: `${siteConfig.name} | İstanbul`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
     type: "website",
     images: [
       {
-        url: "https://gamzeyildirim.av.tr/avklogo.png",
-        width: 512,
-        height: 512,
-        alt: "Avukat Gamze Yıldırım Logo",
+        url: siteConfig.socialImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} kurumsal önizleme görseli`,
       },
     ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} | İstanbul`,
+    description: siteConfig.description,
+    images: [siteConfig.socialImage],
   },
 
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
+};
+
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      url: siteConfig.url,
+      name: siteConfig.name,
+      alternateName: siteConfig.personName,
+      inLanguage: [siteConfig.language, "en"],
+      publisher: { "@id": `${siteConfig.url}/#legal-service` },
+      about: { "@id": `${siteConfig.url}/#person` },
+      copyrightHolder: { "@id": `${siteConfig.url}/#legal-service` },
+    },
+    {
+      "@type": "LegalService",
+      "@id": `${siteConfig.url}/#legal-service`,
+      name: siteConfig.name,
+      description: siteConfig.description,
+      url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl(siteConfig.logoImage),
+        width: 512,
+        height: 512,
+      },
+      image: {
+        "@type": "ImageObject",
+        url: absoluteUrl(siteConfig.socialImage),
+        width: 1200,
+        height: 630,
+      },
+      telephone: siteConfig.telephone,
+      email: siteConfig.email,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "İstanbul",
+        addressCountry: "TR",
+      },
+      areaServed: [
+        { "@type": "City", name: "İstanbul" },
+        { "@type": "Country", name: "Türkiye" },
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: siteConfig.telephone,
+        email: siteConfig.email,
+        contactType: "legal enquiries",
+        areaServed: "TR",
+      },
+      founder: { "@id": `${siteConfig.url}/#person` },
+      employee: { "@id": `${siteConfig.url}/#person` },
+      knowsAbout: expertiseTopics,
+      sameAs: socialProfiles,
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteConfig.url}/#person`,
+      name: siteConfig.personName,
+      honorificPrefix: "Av.",
+      jobTitle: "Avukat / Attorney at Law",
+      url: absoluteUrl("/hakkimizda"),
+      image: absoluteUrl(siteConfig.profileImage),
+      email: siteConfig.email,
+      telephone: siteConfig.telephone,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "İstanbul",
+        addressCountry: "TR",
+      },
+      sameAs: socialProfiles,
+      knowsAbout: expertiseTopics,
+      worksFor: { "@id": `${siteConfig.url}/#legal-service` },
+      subjectOf: [
+        { "@id": `${absoluteUrl("/hakkimizda")}#profile-page` },
+        { "@id": `${absoluteUrl("/en/about")}#profile-page` },
+      ],
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -67,57 +167,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr">
-        <head>
-          {/* 🔑 Favicon */}
-          <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
-          <link rel="icon" href="/favicon.png" sizes="192x192" type="image/png" />
-
-          {/* 🔑 OpenGraph Image */}
-          <meta property="og:image" content="https://gamzeyildirim.av.tr/avklogo.png" />
-          <meta property="og:image:width" content="512" />
-          <meta property="og:image:height" content="512" />
-          <meta property="og:image:alt" content="Avukat Gamze Yıldırım Logo" />
-        </head>
-
-      <body className="bg-white text-gray-800">
-        {/* SEO Schema */}
+    <html lang="tr" suppressHydrationWarning>
+      <head>
         <script
-          type="application/ld+json"
+          id="document-language"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LegalService",
-              name: "İstanbul Freelance Avukat",
-              url: "https://gamzeyildirim.av.tr",
-              areaServed: { "@type": "Place", name: "İstanbul" },
-              availableChannel: {
-                "@type": "ServiceChannel",
-                serviceLocation: { "@type": "VirtualLocation", url: "https://gamzeyildirim.av.tr" },
-              },
-              sameAs: ["https://wa.me/905447370009"],
-            }),
+            __html: "document.documentElement.lang=(location.pathname==='/en'||location.pathname.startsWith('/en/'))?'en':'tr';",
           }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Gamze Yıldırım Avukat",
-              url: "https://gamzeyildirim.av.tr",
-              logo: "https://gamzeyildirim.av.tr/avklogo.png",
-            }),
-          }}
-        />
+      </head>
+      <body className={`${poppins.className} flex min-h-screen flex-col bg-white text-gray-800`}>
+        <DocumentLanguage />
+        <JsonLd data={siteJsonLd} />
 
         <ScrollNavbar>
           <Navbar />
         </ScrollNavbar>
 
         {/* 📄 Sayfa İçeriği */}
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
 
         <Footer />
 
@@ -126,16 +194,11 @@ export default function RootLayout({
           href="https://wa.me/905447370009"
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-0 right-0 z-50 flex items-center gap-2 transition hover:bg-green-600"
-          style={{
-            backgroundColor: "#262b3e",
-            color: "white",
-            padding: "12px 68px",
-            fontWeight: 500,
-          }}
+          aria-label="WhatsApp"
+          className="fixed bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center gap-1.5 rounded-full bg-[#d4ae5a] text-sm font-semibold text-[#10263e] shadow-lg transition hover:bg-[#e1c273] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ae5a] focus-visible:ring-offset-2 sm:h-auto sm:w-auto sm:px-4 sm:py-2.5"
         >
-          <FaWhatsapp size={22} />
-          <span>WhatsApp</span>
+          <FaWhatsapp size={20} />
+          <span className="hidden sm:inline">WhatsApp</span>
         </a>
       </body>
     </html>

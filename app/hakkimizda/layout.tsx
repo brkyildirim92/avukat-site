@@ -1,4 +1,12 @@
-﻿import { poppins } from "@/app/layout";
+import { playfair } from "../fonts";
+import { createPageMetadata } from "../lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Hakkımızda",
+  description:
+    "Avukat Gamze Yıldırım'ın hukuki hizmet yaklaşımı, çalışma ilkeleri ve süreç yönetimi anlayışı hakkında bilgi.",
+  path: "/hakkimizda",
+});
 
 export default function HakkimizdaLayout({
   children,
@@ -6,50 +14,25 @@ export default function HakkimizdaLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white min-h-screen">
-
-      {/* 🔹 SAYFA BAŞLIĞI */}
-      <div className="pt-[140px] pb-16">
-        <div className="px-6">
-
-          <div
-            className="
-              flex items-center gap-3
-              justify-center md:justify-start
-            "
-          >
-            {/* SOL ÇİZGİ */}
-            <div
-              className="
-                h-[3px]
-                w-16 sm:w-24 md:w-[260px] lg:w-[390px]
-                bg-[#c69b65]
-                rounded-full
-              "
-            />
-
-            {/* BAŞLIK */}
-            <h1
-              className={`
-                ${poppins.className}
-                text-[18px] md:text-[20px]
-                font-medium
-                whitespace-nowrap
-              `}
-              style={{ color: "#c69b65" }}
-            >
-              Avukat Gamze Yıldırım
-            </h1>
-          </div>
-
+    <div className="min-h-screen bg-white">
+      <section className="border-b border-[#dfe5e9] bg-[#f3f6f8] px-6 pb-14 pt-[150px] md:pb-18 md:pt-[175px]">
+        <div className="mx-auto max-w-6xl">
+          <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#a97c2e]">
+            <span className="h-px w-10 bg-[#c69b66]" aria-hidden="true" />
+            Hukuki Yaklaşım
+          </p>
+          <h1 className={`${playfair.className} mt-5 text-4xl font-medium italic leading-tight text-[#10263e] md:text-6xl`}>
+            Avukat Gamze Yıldırım
+          </h1>
+          <p className="mt-5 max-w-3xl text-base leading-8 text-[#526273] md:text-lg">
+            İstanbul merkezli hukuki danışmanlık ve dava takibinde; doğru analiz, şeffaf iletişim ve ihtiyaca uygun stratejik yaklaşım.
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* 📄 SAYFA İÇERİĞİ */}
-      <main className="max-w-7xl mx-auto px-6 pb-32">
-        {children}
-      </main>
-
+      <section className="px-6 py-12 md:py-16">
+        <div className="mx-auto max-w-6xl">{children}</div>
+      </section>
     </div>
   );
 }

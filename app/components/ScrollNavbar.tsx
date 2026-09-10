@@ -1,6 +1,7 @@
 ﻿"use client";
 
-import { useEffect, useState, ReactElement } from "react";
+import { cloneElement, isValidElement, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function ScrollNavbar({
   children,
@@ -8,6 +9,9 @@ export default function ScrollNavbar({
   children: React.ReactNode;
 }) {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/" || pathname === "/en";
+  const transparent = isHomePage && !scrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,37 +24,11 @@ export default function ScrollNavbar({
 
   return (
     <header
-      className="fixed top-0 left-0 w-full z-50 border-b border-white/10"
-      style={{
-        backgroundColor: scrolled
-          ? "rgba(245, 245, 245, 0.98)"
-          : "rgba(16, 19, 77, 0.0)",
-        transition: "background-color 0.6s ease",
-      }}
+      className={`fixed left-0 top-0 z-50 w-full border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 ${transparent ? "border-white/15 bg-[#061f36]/20 backdrop-blur-md" : "border-[#d8e1e8]/80 bg-[linear-gradient(135deg,rgba(255,255,255,0.90),rgba(248,251,253,0.84))] shadow-[0_10px_34px_rgba(16,38,62,0.09)] backdrop-blur-[26px] backdrop-saturate-[1.15]"}`}
     >
-      {/* BLUR KATMANI */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backdropFilter: "blur(14px)",
-          WebkitBackdropFilter: "blur(14px)",
-        }}
-      />
-
-      {/* GERÇEK İÇERİK */}
-      <div className="relative z-10">
-        {typeof children === "object"
-          ? (children as ReactElement<any>) &&
-            (() => {
-              const child = children as ReactElement<any>;
-              return {
-                ...child,
-                props: {
-                  ...child.props,
-                  shrink: scrolled,
-                },
-              };
-            })()
+      <div>
+        {isValidElement<{ shrink?: boolean }>(children)
+          ? cloneElement(children, { shrink: scrolled })
           : children}
       </div>
     </header>
